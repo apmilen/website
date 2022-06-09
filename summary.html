@@ -1,0 +1,150 @@
+<!-- this is a self-documented html page. each section will describe itself using these comments -->
+
+
+<!-- not sure -->
+<!DOCTYPE html>
+
+<!-- an html page is first made up of html elements. they follow this basic form:
+
+	<element> content that will appear on screen </element>
+
+the first part is called an opening tag. the middle part is called the content. the last part is called the closing tag. the content and the closing tag may be optional, depending on the element you're using. they are arranged in a tree structure, which means you can have elements nested as children of other elements:
+
+	<parent>
+		<child> andy </child>
+		<child> steve </child>
+	</parent>
+
+in this html tree andy and steve share a parent, so they're siblings.
+
+html elements can also have attributes, which are written inside the opening tag usually as name="value" pairs:
+
+	<element id="main-menu" class="navigation-dropdown"> content </element>
+
+the id attribute is usually used to identify unique elements that only appear once on the page and classes are used to identify multiple members of a category. id's are useful in javascript and classes are useful in CSS styling.
+
+ -->
+
+<!-- the root element of the html page is always called html -->
+<html>
+
+<!-- the head element holds information that's not meant to be displayed, like javascript functionality and page styling rules.  -->
+<head>
+
+	<!-- this element tells the page to render special characters like emojis -->
+	<meta charset="utf-8">
+
+	<!-- this element is the window title that will appear on the tab -->
+	<title>synopsis web page</title>
+
+	<!-- the style element contains CSS for the page. you define a CSS rule with this form:
+
+		element-selector {
+			
+			property: value;
+		}
+
+	the element-selector can be an id which uses the # sign (e.g. selecting <div id="bob"></div> in CSS would be #bob ), it can be a class which uses the . sign (e.g. selecting <div class="student"></div> would be .student and it would select all elements with class="student"), or it can be the element name which will select all elements of that type (e.g. selecting all divs would simply be div ). these selectors can also be combined (e.g. all divs of class student would be div.student ). in the case of conflicting rules (e.g. one applicable rule says font-size of 10px and another says font-size of 20px), the most specific overrules the other ones. ids are more specific than classes, which are more specific than plain element selectors.
+	 -->
+	<style type="text/css">
+		
+		/* comment notation in CSS is a little different than HTML or javascript*/ 
+
+		/* the rules applied to the body are the most general and most easily overruled. rules here will cascade down to all the child elements if there's no more specific rule in conflict.  */
+		body {
+
+			background: #EEEEEE;
+			color: #444;
+			padding-left: 30px;
+			font-family: sans-serif;
+		}
+
+		/* these are the main styles of the div, which has a main-button id */
+		#main-button {
+			margin-top: 20px;
+			padding: 10px;
+			border: 1px solid red;
+			max-width: 155px;
+			border-radius:  5px;
+			cursor:  pointer;
+		}
+
+		/* CSS is full of goofy little tricks that are necessary because of its strange design. in this case, i've applied the red background using the "unclicked" class selector and then I overrule it using the more specific "clicked" class selector below. this way toggling the "clicked" class will change the style. this trick only works because when two rules are of equal specificity, the one further down the page takes priority. this means the trick will break if i rearrange these two rules in the file. */
+		.unclicked {
+			background: red;
+		}
+
+		.clicked {
+			background: transparent;
+		}
+
+		/* by setting the max-width of the ul element, i can control the width of its child li elements. the li element's default display value is block, meaning it will fill up a full row of its parent element. if i set the width of the parent element, i set the width of all child elements that have display set to block. */
+		ul {
+			max-width: 200px;
+		}
+
+		li {
+			margin-top: 10px;
+			padding: 5px;
+		}
+
+	</style>
+
+	<script type="text/javascript" defer>
+		
+		function buttonClick(e) {
+			console.log("hello")
+			document.getElementById("main-button").classList.toggle("clicked");
+		}
+
+		window.addEventListener('DOMContentLoaded', function() {
+			document.getElementById("main-button").addEventListener('click', buttonClick);	
+		});
+		
+	</script>
+</head>
+
+<!-- the body element holds all the content that will be displayed on screen -->
+<body>
+
+	<!-- the first element is a heading. you can pick the heading size using numbers next to an h, the largest is h1 and the smallest is h6. -->
+
+	<h2>my synopsis website</h2>
+
+	<!-- next is the paragraph element. the default styling of the paragraph gives it some margin along the bottom to create a line break. -->
+
+	<p>this is the site where we will demonstrate what we've learned in computer class. it will have every element and feature included.</p>
+
+	<!-- the image element has a src attribute which includes a link to the image file. it can be internal to the page or an external link. you can put styles right on any element using the style attribute, as i'm doing here. -->
+
+	<img src="https://static01.nyt.com/images/2021/12/07/science/07cli-manatees1/07cli-manatees1-mobileMasterAt3x.jpg" style="width:300px;">
+
+	<!-- the br element inserts a line break when you need whitespace but don't want to change surrounding elements' CSS. in this case the img element uses an inline-block display, meaning it doesn't create a new line for the following elements. -->
+
+	<br>
+	<br>
+
+	<!-- the anchor element is for hyperlinks, the main benefit of the internet. it uses an href attribute to specify the address of the link. the target="_blank" attribute causes the link to open in a new tab.  -->
+
+	<a href="https://www.youtube.com/watch?v=zBpJZ_Qu1Yk" target="_blank">Fiona the Hippo</a>
+
+	<!-- the div element is the main container for creating groups of other elements, like a sidebar with navigation options or a picture grouped with a caption and a border. it uses a default display of block, meaning it takes up its own entire line on the page.  -->
+
+	<div id="main-button" class="unclicked">Click me I'm a button!</div>
+
+	<!-- the ul element stands for unordered list. it contains child elements called li (list item) and the unordered part means they aren't automatically numbered (as they would be in an ol element). this element's default style is useful for arranging things vertically. -->
+
+
+	<h4>shopping list</h4>
+
+	<ul>
+		<li>apples</li>
+		<li>carrots</li>
+		<li>bananas</li>
+		<li>oranges</li>
+	</ul>
+
+
+
+</body>
+</html>
